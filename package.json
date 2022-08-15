@@ -2,5 +2,24 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "inquirer": "^8.2.4"
-  }
+    
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "quit",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SuB-GH/employee-tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SuB-GH/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/SuB-GH/employee-tracker#readme"
 }
