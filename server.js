@@ -45,10 +45,19 @@ inquirer.prompt([
   },
 ])
   .then((answer) => {
-    console.log(answer.navigation);
-    db.query(`SELECT * FROM employee`, (err, rows) => {
-      console.table(rows);
+    //  db.query(`SELECT * FROM employee`, (err, rows) => {
+    //   console.table(rows);
+      db.query(`SELECT * FROM department`, (err, rows) => {
+        console.table(rows);
     });
+    // console.log(answer.navigation);
+    // db.query(`SELECT * FROM role`, (err, rows) => {
+    //   console.table(rows);
+    // });
+    //this works!
+    // db.query(`SELECT * FROM employee`, (err, rows) => {
+    //   console.table(rows);
+    // });
 
   });
 
