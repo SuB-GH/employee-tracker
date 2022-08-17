@@ -25,16 +25,37 @@ inquirer.prompt([
 ])
   .then(res => {
     switch (res.navigation) {
+
+      //this works!
       case "View all departments":
         console.log("I just selected view all departments!");
+        
+        db.query(`SELECT * FROM department`, (err, rows) => {
+          console.table(rows);
+        })
         break;
 
+        //this works!
       case "View all roles":
         console.log("I just selected view all roles!");
+        db.query(`SELECT * FROM roles`, (err, rows) => {
+          console.table(rows);
+        })
         break;
 
+        //this works!
       case "View all employees":
         console.log("I just selected view all employees!");
+        db.query(`SELECT * FROM employee`, (err, rows) => {
+          console.table(rows);
+        })
+        break;
+
+        case "Add a department":
+        console.log("I want to add a department!");
+        db.query(`SELECT * FROM employee`, (err, rows) => {
+          console.table(rows);
+        })
         break;
 
       default:
