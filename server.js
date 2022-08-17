@@ -6,27 +6,6 @@ require("dotenv").config()
 const dotenv = require("dotenv")
 dotenv.config()
 
-// console.table("data"); //this works!
-
-// db.query(`SELECT * FROM employee`, (err, rows) => {
-//   console.table(rows);
-// });
-
-// db.query(
-//   'SELECT * FROM `table`',
-//   function (results) {
-//     console.log('table');
-//   }
-// );
-
-// connection.query(
-//   'SELECT * FROM `department` WHERE `name` = "Page" AND `age` > 45',
-//   function(err, results, fields) {
-//     console.log(results); // results contains rows returned by server
-//     console.log(fields); // fields contains extra meta data about results, if available
-//   }
-// );
-
 //inquirer prompts
 inquirer.prompt([
   {
@@ -44,12 +23,32 @@ inquirer.prompt([
     ],
   },
 ])
-  .then((answer) => {
-    //  db.query(`SELECT * FROM employee`, (err, rows) => {
-    //   console.table(rows);
-      db.query(`SELECT * FROM department`, (err, rows) => {
-        console.table(rows);
-    });
+  .then(res => {
+    switch (res.navigation) {
+      case "View all departments":
+        console.log("I just selected view all departments!");
+        break;
+
+      case "View all roles":
+        console.log("I just selected view all roles!");
+        break;
+
+      case "View all employees":
+        console.log("I just selected view all employees!");
+        break;
+
+      default:
+        console.log("default null");
+        break;
+    }
+    //this works!
+    // .then((answer) => {
+    //   //  db.query(`SELECT * FROM employee`, (err, rows) => {
+    //   //   console.table(rows);
+    //     db.query(`SELECT * FROM department`, (err, rows) => {
+    //       console.table(rows);
+
+    //   });
     // console.log(answer.navigation);
     // db.query(`SELECT * FROM role`, (err, rows) => {
     //   console.table(rows);
@@ -117,3 +116,25 @@ inquirer.prompt([
 //   });
 // });
 
+// console.table("data"); //this works!
+
+// db.query(`SELECT * FROM employee`, (err, rows) => {
+//   console.table(rows);
+// });
+
+// db.query(
+//   'SELECT * FROM `table`',
+//   function (results) {
+//     console.log('table');
+//   }
+// );
+
+
+
+// connection.query(
+//   'SELECT * FROM `department` WHERE `name` = "Page" AND `age` > 45',
+//   function(err, results, fields) {
+//     console.log(results); // results contains rows returned by server
+//     console.log(fields); // fields contains extra meta data about results, if available
+//   }
+// );
