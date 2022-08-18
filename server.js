@@ -29,7 +29,6 @@ inquirer.prompt([
       //this works!
       case "View all departments":
         console.log("This will show a formatted table showing department names and department ids");
-
         db.query(`SELECT * FROM department`, (err, rows) => {
           console.table(rows);
         })
@@ -50,6 +49,24 @@ inquirer.prompt([
           console.table(rows);
         })
         break;
+      //testing this
+      case "Add a department":
+        return inquirer
+          .prompt(
+            {
+              type: 'input',
+              name: 'newDept',
+              message: 'What is the name of the department?',
+            }
+          )
+          .then(function (answer) {
+            console.table(answer);
+          });
+        console.log("this will show formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to");
+        db.query(`SELECT * FROM employee`, (err, rows) => {
+          console.table(rows);
+        })
+        break;
 
       //this works!
       // case "Add a department":
@@ -59,28 +76,36 @@ inquirer.prompt([
       // })
       // break;
 
-      
+
       case "Add a department":
         //console.log("this will prompt me to enter the name of the department and that department is added to the database");
-        inquirer.prompt(
-          {
-            type: 'input',
-            name: 'newDept',
-            message: 'What is the name of the department?',
-            value: "", 
-          
-          },
-        )
-        
-        db.connect(function(err) {
-          if (err) throw err;
-          var sql = "INSERT INTO department (dept_name, dept_id) VALUES ('Engineering', '02')";
-        db.query(sql, function (err, result) {
-          if (err) throw err;
-          console.log("1 record inserted");
-        })
-      });
-        break;
+        return inquirer
+          .prompt(
+            {
+              type: 'input',
+              name: 'newDept',
+              message: 'What is the name of the department?',
+
+              validate: newDeptInput => {
+                if (newDeptInput) {
+                  return true;
+                } else {
+                  console.log('Please enter a department name');
+                  return false;
+                }
+              }
+            },
+
+            db.connect(function (err) {
+              if (err) throw err;
+              var sql = "INSERT INTO department (dept_name, dept_id) VALUES ('Engineering', '02')";
+              db.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("1 record inserted");
+              })
+
+            }))
+
 
       case "Add a role":
         console.log("this will prompt me to enter the name, salary, and department for the role and that role is added to the database");
